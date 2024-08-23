@@ -76,6 +76,7 @@ final class CurrentAccount extends Account {
     }
 }
 
+
 public class BankSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -108,7 +109,35 @@ public class BankSystem {
         if (account != null) {
             account.displayAccountDetails();
 
-            // Add logic for deposits and withdrawals here
+            // Logic for deposits and withdrawals
+            while (true) {
+                System.out.println("\nWhat would you like to do?");
+                System.out.println("1. Deposit");
+                System.out.println("2. Withdraw");
+                System.out.println("3. Display Account Details");
+                System.out.println("4. Exit");
+
+                int choice = scanner.nextInt();
+                
+                if (choice == 1) {
+                    System.out.print("Enter deposit amount: ");
+                    double depositAmount = scanner.nextDouble();
+                    account.deposit(depositAmount);
+                    System.out.println("New Balance: " + account.balance);
+                } else if (choice == 2) {
+                    System.out.print("Enter withdrawal amount: ");
+                    double withdrawalAmount = scanner.nextDouble();
+                    account.withdraw(withdrawalAmount);
+                    System.out.println("New Balance: " + account.balance);
+                } else if (choice == 3) {
+                    account.displayAccountDetails();
+                } else if (choice == 4) {
+                    System.out.println("Thank you for using our service.");
+                    break;
+                } else {
+                    System.out.println("Invalid choice! Please select a valid option.");
+                }
+            }
         }
 
         scanner.close();
